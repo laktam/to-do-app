@@ -1,17 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import { Task } from "./components/Task";
+import { CreateTask } from "./components/CreateTask";
 
 function App() {
+  const [taskList, setTaskList] = useState([]);
+
   return (
     <div className="App">
-      <Task
-        content={
-          "note pour faire quelque chose. note pour faire quelque chose."
-        }
-        dueDate={"5 min left"}
-      ></Task>
+      <CreateTask taskList={taskList} />
     </div>
   );
 }
