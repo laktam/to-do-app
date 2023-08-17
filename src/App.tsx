@@ -1,15 +1,17 @@
-import React, { useState } from "react";
+import React, { ReactNode, useState } from "react";
 import logo from "./logo.svg";
 import "./App.css";
-import { Task } from "./components/Task";
 import { CreateTask } from "./components/CreateTask";
 
 function App() {
-  const [taskList, setTaskList] = useState([]);
+  const [taskList, setTaskList] = useState<ReactNode[]>([]);
 
   return (
     <div className="App">
-      <CreateTask taskList={taskList} />
+      <CreateTask taskList={taskList} setTaskList={setTaskList} />
+      {taskList.map((item,index)=>{
+        return item
+      })}
     </div>
   );
 }

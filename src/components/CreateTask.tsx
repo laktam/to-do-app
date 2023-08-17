@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { ReactNode, useState } from "react";
 import styled from "styled-components";
+import { Task } from "./Task";
 
 const Container = styled.div``;
 const TextArea = styled.textarea``;
@@ -8,7 +9,8 @@ const AddTask = styled.button`
 `;
 
 type Props = {
-  taskList: string[];
+  setTaskList: any;
+  taskList: ReactNode[];
 };
 export function CreateTask(props: Props) {
   const [task, setTask] = useState("");
@@ -16,7 +18,11 @@ export function CreateTask(props: Props) {
   const handleTaskChange = (event: any) => {
     setTask(event.target.value);
   };
-  const createNewTask = () => {};
+  const createNewTask = () => {
+    const newTask = <Task content={task} dueDate={"to update"} />;
+    props.setTaskList([...props.taskList, newTask]);
+    setTask("");
+  };
 
   return (
     <Container>
