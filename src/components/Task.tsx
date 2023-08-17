@@ -1,10 +1,10 @@
 import styled from "styled-components";
 
 const Container = styled.div`
-  width: 200px;
-  background-color: grey;
+  width: 300px;
+  background-color: #D6E6F2;
   border-radius: 6px;
-  padding: 10px;
+  padding: 10px 10px 4px 10px;
 `;
 const SubContainer = styled.div`
   margin-top: 8px;
@@ -15,12 +15,15 @@ const Content = styled.div``;
 const Time = styled.div`
   background-color: white;
   border-radius: 20px;
-  padding: 5px 10px;
+  padding: 3px 7px;
+  font-size: 15px;
 `;
 const Done = styled.button`
   border-radius: 20px;
-  padding: 5px 10px;
-  font-size: 16px;
+  padding: 3px 7px;
+  font-size: 15px;
+  background-color: #769FCD;
+
 `;
 
 type Props = {
