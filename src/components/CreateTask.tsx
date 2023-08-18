@@ -28,7 +28,9 @@ const AddTask = styled.button`
   font-size: 28px;
   border-radius: 45%;
 `;
-const DatePicker = styled.div``;
+const DatePicker = styled.div`
+  background-color: white;
+`;
 
 type Props = {
   setTaskList: any;
@@ -44,7 +46,7 @@ export function CreateTask(props: Props) {
   const createNewTask = () => {
     if (task !== "") {
       const newTask = (
-        <Task content={task} dueDate={date?.format("MM/DD/YYYY")} />
+        <Task content={task} dueDate={date} />
       );
       props.setTaskList([...props.taskList, newTask]);
       setTask("");
