@@ -9,8 +9,8 @@ function App() {
   return (
     <div className="App">
       <CreateTask taskList={taskList} setTaskList={setTaskList} />
-      {taskList.map((item,index)=>{
-        return item
+      {taskList.map((item, index) => {
+        return <div key={index}> {item}</div>;
       })}
     </div>
   );

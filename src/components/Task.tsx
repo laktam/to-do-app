@@ -1,8 +1,10 @@
+import { Paper } from "@mui/material";
+import { useState } from "react";
 import styled from "styled-components";
 
 const Container = styled.div`
-  width: 300px;
-  background-color: #D6E6F2;
+  margin: 10px;
+  // background-color: #fff; //#d6e6f2
   border-radius: 6px;
   padding: 10px 10px 4px 10px;
 `;
@@ -13,17 +15,18 @@ const SubContainer = styled.div`
 `;
 const Content = styled.div``;
 const Time = styled.div`
-  background-color: white;
+  background-color: #e4e6eb;
   border-radius: 20px;
   padding: 3px 7px;
   font-size: 15px;
 `;
 const Done = styled.button`
+  border-style: none;
   border-radius: 20px;
   padding: 3px 7px;
   font-size: 15px;
-  background-color: #769FCD;
-
+  color: white;
+  background-color: rgb(32, 120, 244); //#769fcd;
 `;
 
 type Props = {
@@ -32,13 +35,23 @@ type Props = {
 };
 
 export function Task(props: Props) {
-  return (
-    <Container>
-      <Content>{props.content}</Content>
-      <SubContainer>
-        <Time>{props.dueDate}</Time>
-        <Done>done</Done>
-      </SubContainer>
-    </Container>
+  const [isDone, setIsDone] = useState(false);
+
+  const handleTaskDone = () => {
+    setIsDone(true);
+  };
+
+  return isDone ? (
+    <></>
+  ) : (
+    <Paper sx={{ width: "300px" }}>
+      <Container>
+        <Content>{props.content}</Content>
+        <SubContainer>
+          <Time>{props.dueDate}</Time>
+          <Done onClick={handleTaskDone}>done</Done>
+        </SubContainer>
+      </Container>
+    </Paper>
   );
 }
