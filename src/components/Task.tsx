@@ -31,7 +31,7 @@ const Done = styled.button`
 
 type Props = {
   content: string;
-  dueDate: string;
+  dueDate: string | undefined;
 };
 
 export function Task(props: Props) {

@@ -1,6 +1,9 @@
 import { ReactNode, useState } from "react";
 import styled from "styled-components";
 import { Task } from "./Task";
+import { DateField, LocalizationProvider } from "@mui/x-date-pickers";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import dayjs, { Dayjs } from "dayjs"; // Import Dayjs type along with dayjs
 
 const Container = styled.div`
   display: flex;
@@ -22,6 +25,7 @@ const AddTask = styled.button`
   font-size: 28px;
   border-radius: 45%;
 `;
+const DatePicker = styled.div``;
 
 type Props = {
   setTaskList: any;
@@ -29,13 +33,16 @@ type Props = {
 };
 export function CreateTask(props: Props) {
   const [task, setTask] = useState("");
+  const [date, setDate] = useState<Dayjs>();
 
   const handleTaskChange = (event: any) => {
     setTask(event.target.value);
   };
   const createNewTask = () => {
     if (task !== "") {
-      const newTask = <Task content={task} dueDate={"to update"} />;
+      const newTask = (
+        <Task content={task} dueDate={date?.format("MM/DD/YYYY")} />
+      );
       props.setTaskList([...props.taskList, newTask]);
       setTask("");
     }
@@ -44,6 +51,21 @@ export function CreateTask(props: Props) {
   return (
     <Container>
       <TextArea value={task} onChange={handleTaskChange} />
+      <DatePicker>
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
+          <DateField
+            label="due date"
+            value={date}
+            onChange={(newDate) => {
+              if (newDate !== null) {
+                console.log(newDate);
+                setDate(newDate);
+              }
+            }}
+          />
+        </LocalizationProvider>
+      </DatePicker>
+
       <AddTask onClick={createNewTask}>+</AddTask>
     </Container>
   );
