@@ -2,10 +2,25 @@ import { ReactNode, useState } from "react";
 import styled from "styled-components";
 import { Task } from "./Task";
 
-const Container = styled.div``;
-const TextArea = styled.textarea``;
+const Container = styled.div`
+  display: flex;
+  align-items: center;
+`;
+const TextArea = styled.textarea`
+  width: 400px;
+  height: 80px;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 3px;
+  background-color: #f8f8f8;
+  font-size: 16px;
+  resize: none;
+`;
 const AddTask = styled.button`
-  font-size: 20px;
+  margin: 10px;
+  font-size: 28px;
+  border-radius: 45%;
 `;
 
 type Props = {
@@ -19,9 +34,11 @@ export function CreateTask(props: Props) {
     setTask(event.target.value);
   };
   const createNewTask = () => {
-    const newTask = <Task content={task} dueDate={"to update"} />;
-    props.setTaskList([...props.taskList, newTask]);
-    setTask("");
+    if (task !== "") {
+      const newTask = <Task content={task} dueDate={"to update"} />;
+      props.setTaskList([...props.taskList, newTask]);
+      setTask("");
+    }
   };
 
   return (

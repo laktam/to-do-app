@@ -3,7 +3,7 @@ import { useState } from "react";
 import styled from "styled-components";
 
 const Container = styled.div`
-  margin: 10px;
+  margin: 8px;
   // background-color: #fff; //#d6e6f2
   border-radius: 6px;
   padding: 10px 10px 4px 10px;
