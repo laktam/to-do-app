@@ -29,7 +29,21 @@ const Done = styled.button`
   color: white;
   background-color: rgb(32, 120, 244); //#769fcd;
 `;
-const Missed = styled.div``;
+const Div = styled.div`
+  position: relative;
+`;
+const Missed = styled.div`
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(128, 128, 128, 0.5); /* Gray with 50% opacity */
+  font-size: 20px;
+`;
 
 type Props = {
   content: string;
@@ -56,16 +70,19 @@ export function Task(props: Props) {
   return isDone ? (
     <></>
   ) : (
-    <Paper sx={{ width: "350px" }}>
-      <Container>
-        <Content>{props.content}</Content>
-        <SubContainer>
-          <Time>
-            {daysRemaining} {"day(s) left"}
-          </Time>
-          <Done onClick={handleTaskDone}>done</Done>
-        </SubContainer>
-      </Container>
-    </Paper>
+    <Div>
+      <Paper sx={{ width: "350px" }}>
+        <Container>
+          <Content>{props.content}</Content>
+          <SubContainer>
+            <Time>
+              {daysRemaining} {"day(s) left"}
+            </Time>
+            <Done onClick={handleTaskDone}>done</Done>
+          </SubContainer>
+        </Container>
+      </Paper>
+      {daysRemaining === 0 ? <Missed>task due date is missed</Missed> : <></>}
+    </Div>
   );
 }
