@@ -13,7 +13,7 @@ const Container = styled.div`
   justify-content: space-between;
 `;
 const TextArea = styled.textarea`
-  width: 450px;
+  width: 400px;
   height: 80px;
   padding: 12px 20px;
   box-sizing: border-box;
@@ -48,6 +48,7 @@ export function CreateTask(props: Props) {
       );
       props.setTaskList([...props.taskList, newTask]);
       setTask("");
+      setDate(undefined);
     }
   };
 

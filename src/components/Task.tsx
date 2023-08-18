@@ -17,7 +17,7 @@ const Content = styled.div``;
 const Time = styled.div`
   background-color: #e4e6eb;
   border-radius: 20px;
-  padding: 3px 7px;
+  padding: 3px 11px;
   font-size: 15px;
 `;
 const Done = styled.button`
@@ -44,7 +44,7 @@ export function Task(props: Props) {
   return isDone ? (
     <></>
   ) : (
-    <Paper sx={{ width: "300px" }}>
+    <Paper sx={{ width: "350px" }}>
       <Container>
         <Content>{props.content}</Content>
         <SubContainer>
