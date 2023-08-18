@@ -7,10 +7,13 @@ import dayjs, { Dayjs } from "dayjs"; // Import Dayjs type along with dayjs
 
 const Container = styled.div`
   display: flex;
+  flex-direction: row;
   align-items: center;
+  margin: 5px;
+  justify-content: space-between;
 `;
 const TextArea = styled.textarea`
-  width: 400px;
+  width: 450px;
   height: 80px;
   padding: 12px 20px;
   box-sizing: border-box;
@@ -49,24 +52,26 @@ export function CreateTask(props: Props) {
   };
 
   return (
-    <Container>
+    <div>
       <TextArea value={task} onChange={handleTaskChange} />
-      <DatePicker>
-        <LocalizationProvider dateAdapter={AdapterDayjs}>
-          <DateField
-            label="due date"
-            value={date}
-            onChange={(newDate) => {
-              if (newDate !== null) {
-                console.log(newDate);
-                setDate(newDate);
-              }
-            }}
-          />
-        </LocalizationProvider>
-      </DatePicker>
+      <Container>
+        <DatePicker>
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <DateField
+              label="due date"
+              value={date}
+              onChange={(newDate) => {
+                if (newDate !== null) {
+                  console.log(newDate);
+                  setDate(newDate);
+                }
+              }}
+            />
+          </LocalizationProvider>
+        </DatePicker>
 
-      <AddTask onClick={createNewTask}>+</AddTask>
-    </Container>
+        <AddTask onClick={createNewTask}>+</AddTask>
+      </Container>
+    </div>
   );
 }
