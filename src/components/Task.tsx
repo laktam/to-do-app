@@ -2,6 +2,8 @@ import { Paper } from "@mui/material";
 import dayjs, { Dayjs } from "dayjs";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
+import relativeTime from "dayjs/plugin/relativeTime";
+// var relativeTime = require("dayjs/plugin/relativeTime");
 
 const Container = styled.div`
   margin: 8px;
@@ -52,17 +54,20 @@ type Props = {
 
 export function Task(props: Props) {
   const [isDone, setIsDone] = useState(false);
-  const [timeRemaining, setTimeRemaining] = useState(0);
+  const [timeRemaining, setTimeRemaining] = useState("");
 
   useEffect(() => {
+    dayjs.extend(relativeTime);
+
     const updateRemainingTime = () => {
       const now = dayjs();
-      const diffInHours = props.dueDate?.diff(now, "hour");
+      console.log(now.to(props.dueDate, true));
 
-      setTimeRemaining(Math.max(Number(diffInHours), 0)); // Ensure the result is not negative
+      setTimeRemaining(now.to(props.dueDate, true)); // Ensure the result is not negative
+      // setTimeRemaining();
       console.log("calculation updated");
     };
-    updateRemainingTime()
+    updateRemainingTime();
     let interval = setInterval(updateRemainingTime, 3600000); //hour = 3600000
   }, []);
 
@@ -79,19 +84,21 @@ export function Task(props: Props) {
           <Content>{props.content}</Content>
           <SubContainer>
             <Time>
-              {timeRemaining >= 24
+              {/* {timeRemaining >= 24
                 ? timeRemaining % 24
                   ? `${Math.floor(timeRemaining / 24)} day(s) and ${
                       timeRemaining % 24
                     } hour(s)  left`
                   : `${Math.floor(timeRemaining / 24)} day(s) left`
-                : `${timeRemaining} hour(s) left`}
+                : `${timeRemaining} hour(s) left`} */}
+              {timeRemaining}
+              {" left"}
             </Time>
             <Done onClick={handleTaskDone}>done</Done>
           </SubContainer>
         </Container>
       </Paper>
-      {timeRemaining === 0 ? <Missed>task due date is missed</Missed> : <></>}
+      {/* {timeRemaining === 0 ? <Missed>task due date is missed</Missed> : <></>} */}
     </Div>
   );
 }

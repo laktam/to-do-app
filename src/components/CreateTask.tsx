@@ -1,7 +1,11 @@
 import { ReactNode, useState } from "react";
 import styled from "styled-components";
 import { Task } from "./Task";
-import { DateField, LocalizationProvider } from "@mui/x-date-pickers";
+import {
+  DateField,
+  DateTimePicker,
+  LocalizationProvider,
+} from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import dayjs, { Dayjs } from "dayjs"; // Import Dayjs type along with dayjs
 
@@ -45,12 +49,9 @@ export function CreateTask(props: Props) {
   };
   const createNewTask = () => {
     if (task !== "") {
-      const newTask = (
-        <Task content={task} dueDate={date} />
-      );
+      const newTask = <Task content={task} dueDate={date} />;
       props.setTaskList([...props.taskList, newTask]);
       setTask("");
-      setDate(undefined);
     }
   };
 
@@ -60,12 +61,11 @@ export function CreateTask(props: Props) {
       <Container>
         <DatePicker>
           <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <DateField
+            <DateTimePicker
               label="due date"
               value={date}
               onChange={(newDate) => {
                 if (newDate !== null) {
-                  console.log(newDate);
                   setDate(newDate);
                 }
               }}
