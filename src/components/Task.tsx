@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 import relativeTime from "dayjs/plugin/relativeTime";
 import isSameOrAfter from "dayjs/plugin/isSameOrAfter";
+import CloseImage from "../images/closeButton.png";
 
 const Container = styled.div`
   margin: 8px;
@@ -46,6 +47,17 @@ const Missed = styled.div`
   align-items: center;
   background-color: rgba(128, 128, 128, 0.5); /* Gray with 50% opacity */
   font-size: 20px;
+`;
+const ClearButton = styled.button`
+  position: absolute;
+   border-radius: 50%;
+  top: 4px;
+  right: 4px;
+  height: 20px;
+  width: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 type Props = {
@@ -110,7 +122,16 @@ export function Task(props: Props) {
             <Done onClick={handleTaskDone}>done</Done>
           </SubContainer>
         </Container>
-        {isMissed ? <Missed>task due date is missed</Missed> : <></>}
+        {isMissed ? (
+          <Missed>
+            task due date is missed
+            <ClearButton onClick={handleTaskDone}>
+              <img style={{ height: "70%" }} src={CloseImage} />
+            </ClearButton>
+          </Missed>
+        ) : (
+          <></>
+        )}
       </Paper>
     </Div>
   );
