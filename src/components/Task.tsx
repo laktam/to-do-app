@@ -52,15 +52,18 @@ type Props = {
 
 export function Task(props: Props) {
   const [isDone, setIsDone] = useState(false);
-  const [daysRemaining, setDaysRemaining] = useState(0);
+  const [timeRemaining, setTimeRemaining] = useState(0);
 
   useEffect(() => {
-    // const updateRemainingDays = () => {
-    const now = dayjs();
-    const diffInDays = props.dueDate?.diff(now, "day");
+    const updateRemainingTime = () => {
+      const now = dayjs();
+      const diffInHours = props.dueDate?.diff(now, "hour");
 
-    setDaysRemaining(Math.max(Number(diffInDays), 0)); // Ensure the result is not negative
-    // };
+      setTimeRemaining(Math.max(Number(diffInHours), 0)); // Ensure the result is not negative
+      console.log("calculation updated");
+    };
+    updateRemainingTime()
+    let interval = setInterval(updateRemainingTime, 3600000); //hour = 3600000
   }, []);
 
   const handleTaskDone = () => {
@@ -76,13 +79,19 @@ export function Task(props: Props) {
           <Content>{props.content}</Content>
           <SubContainer>
             <Time>
-              {daysRemaining} {"day(s) left"}
+              {timeRemaining >= 24
+                ? timeRemaining % 24
+                  ? `${Math.floor(timeRemaining / 24)} day(s) and ${
+                      timeRemaining % 24
+                    } hour(s)  left`
+                  : `${Math.floor(timeRemaining / 24)} day(s) left`
+                : `${timeRemaining} hour(s) left`}
             </Time>
             <Done onClick={handleTaskDone}>done</Done>
           </SubContainer>
         </Container>
       </Paper>
-      {daysRemaining === 0 ? <Missed>task due date is missed</Missed> : <></>}
+      {timeRemaining === 0 ? <Missed>task due date is missed</Missed> : <></>}
     </Div>
   );
 }
