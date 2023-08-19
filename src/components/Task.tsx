@@ -3,7 +3,7 @@ import dayjs, { Dayjs } from "dayjs";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import relativeTime from "dayjs/plugin/relativeTime";
-// var relativeTime = require("dayjs/plugin/relativeTime");
+import isSameOrAfter from "dayjs/plugin/isSameOrAfter";
 
 const Container = styled.div`
   margin: 8px;
@@ -35,6 +35,7 @@ const Div = styled.div`
   position: relative;
 `;
 const Missed = styled.div`
+  border-radius: inherit;
   width: 100%;
   height: 100%;
   position: absolute;
@@ -55,17 +56,33 @@ type Props = {
 export function Task(props: Props) {
   const [isDone, setIsDone] = useState(false);
   const [timeRemaining, setTimeRemaining] = useState("");
+  const [isMissed, setIsMissed] = useState(false);
 
   useEffect(() => {
     dayjs.extend(relativeTime);
+    dayjs.extend(isSameOrAfter);
 
     const updateRemainingTime = () => {
       const now = dayjs();
-      setTimeRemaining(now.to(props.dueDate, true));
-      console.log("calculation updated");
+      if (props.dueDate !== undefined) {
+        console.log(props.dueDate);
+        if (dayjs(props.dueDate).isAfter(now)) {
+          setTimeRemaining(now.to(props.dueDate, true));
+          console.log("calculation updated");
+        } else {
+          setIsMissed(true);
+        }
+      }
     };
     updateRemainingTime();
     let interval = setInterval(updateRemainingTime, 60000); //hour = 3600000
+
+    //clean up function
+    //executed when the component unmout
+    //or when the dependencies change (before the new effect is applied)
+    return () => {
+      clearInterval(interval);
+    };
   }, []);
 
   const handleTaskDone = () => {
@@ -76,7 +93,7 @@ export function Task(props: Props) {
     <></>
   ) : (
     <Div>
-      <Paper sx={{ width: "350px" }}>
+      <Paper sx={{ width: "350px", position: "relative" }}>
         <Container>
           <Content>{props.content}</Content>
           <SubContainer>
@@ -88,14 +105,13 @@ export function Task(props: Props) {
                     } hour(s)  left`
                   : `${Math.floor(timeRemaining / 24)} day(s) left`
                 : `${timeRemaining} hour(s) left`} */}
-              {timeRemaining}
-              {" left"}
+              {!isMissed ? `${timeRemaining} left` : "no time left"}
             </Time>
             <Done onClick={handleTaskDone}>done</Done>
           </SubContainer>
         </Container>
+        {isMissed ? <Missed>task due date is missed</Missed> : <></>}
       </Paper>
-      {/* {timeRemaining === 0 ? <Missed>task due date is missed</Missed> : <></>} */}
     </Div>
   );
 }

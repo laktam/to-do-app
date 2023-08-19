@@ -26,7 +26,7 @@ function App() {
   return (
     <div className="App">
       <CreateTask taskList={taskList} setTaskList={setTaskList} />
-      {taskList.map((item, index) => {
+      {taskList.reverse().map((item, index) => {
         return (
           <Task
             key={index}
