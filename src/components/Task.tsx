@@ -61,14 +61,11 @@ export function Task(props: Props) {
 
     const updateRemainingTime = () => {
       const now = dayjs();
-      console.log(now.to(props.dueDate, true));
-
-      setTimeRemaining(now.to(props.dueDate, true)); // Ensure the result is not negative
-      // setTimeRemaining();
+      setTimeRemaining(now.to(props.dueDate, true));
       console.log("calculation updated");
     };
     updateRemainingTime();
-    let interval = setInterval(updateRemainingTime, 3600000); //hour = 3600000
+    let interval = setInterval(updateRemainingTime, 60000); //hour = 3600000
   }, []);
 
   const handleTaskDone = () => {

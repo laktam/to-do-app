@@ -36,9 +36,14 @@ const DatePicker = styled.div`
   background-color: white;
 `;
 
+type TaskContent =  {
+  content: string;
+  dueDate: Dayjs | undefined;
+};
+
 type Props = {
   setTaskList: any;
-  taskList: ReactNode[];
+  taskList: TaskContent[];
 };
 export function CreateTask(props: Props) {
   const [task, setTask] = useState("");
@@ -49,8 +54,12 @@ export function CreateTask(props: Props) {
   };
   const createNewTask = () => {
     if (task !== "") {
-      const newTask = <Task content={task} dueDate={date} />;
+      const newTask = { content: task, dueDate: date };
       props.setTaskList([...props.taskList, newTask]);
+      localStorage.setItem(
+        "taskList",
+        JSON.stringify([...props.taskList, newTask])
+      );
       setTask("");
     }
   };
