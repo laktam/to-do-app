@@ -36,7 +36,7 @@ const DatePicker = styled.div`
   background-color: white;
 `;
 
-type TaskContent =  {
+type TaskContent = {
   content: string;
   dueDate: Dayjs | undefined;
 };
@@ -47,7 +47,7 @@ type Props = {
 };
 export function CreateTask(props: Props) {
   const [task, setTask] = useState("");
-  const [date, setDate] = useState<Dayjs>();
+  const [date, setDate] = useState<Dayjs | undefined>(dayjs());
 
   const handleTaskChange = (event: any) => {
     setTask(event.target.value);
@@ -72,10 +72,11 @@ export function CreateTask(props: Props) {
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DateTimePicker
               label="due date"
-              value={date}
+              // value={date}
+              // defaultValue={date}
               onChange={(newDate) => {
                 if (newDate !== null) {
-                  setDate(newDate);
+                  setDate(newDate as Dayjs);
                 }
               }}
             />

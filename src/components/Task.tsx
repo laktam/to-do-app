@@ -98,6 +98,8 @@ export function Task(props: Props) {
   }, []);
 
   const handleTaskDone = () => {
+    console.log("timer is exited before unmouting");
+    
     setIsDone(true);
   };
 
