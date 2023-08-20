@@ -50,7 +50,7 @@ const Missed = styled.div`
 `;
 const ClearButton = styled.button`
   position: absolute;
-   border-radius: 50%;
+  border-radius: 50%;
   top: 4px;
   right: 4px;
   height: 20px;
@@ -93,13 +93,12 @@ export function Task(props: Props) {
     //executed when the component unmout
     //or when the dependencies change (before the new effect is applied)
     return () => {
+      console.log("timer is exited before unmouting");
       clearInterval(interval);
     };
-  }, []);
+  }, [isMissed]);//?????????
 
   const handleTaskDone = () => {
-    console.log("timer is exited before unmouting");
-    
     setIsDone(true);
   };
 
