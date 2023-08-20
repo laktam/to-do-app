@@ -1,10 +1,11 @@
 import { Paper } from "@mui/material";
 import dayjs, { Dayjs } from "dayjs";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import relativeTime from "dayjs/plugin/relativeTime";
 import isSameOrAfter from "dayjs/plugin/isSameOrAfter";
 import CloseImage from "../images/closeButton.png";
+import { Context } from "../App";
 
 const Container = styled.div`
   margin: 8px;
@@ -61,6 +62,7 @@ const ClearButton = styled.button`
 `;
 
 type Props = {
+  id: number;
   content: string;
   dueDate: Dayjs | undefined;
 };
@@ -69,6 +71,8 @@ export function Task(props: Props) {
   const [isDone, setIsDone] = useState(false);
   const [timeRemaining, setTimeRemaining] = useState("");
   const [isMissed, setIsMissed] = useState(false);
+
+  const taskContext = useContext(Context);
 
   useEffect(() => {
     dayjs.extend(relativeTime);
@@ -96,9 +100,14 @@ export function Task(props: Props) {
       console.log("timer is exited before unmouting");
       clearInterval(interval);
     };
-  }, [isMissed]);//?????????
+  }, [isMissed]); //?????????
 
   const handleTaskDone = () => {
+    const newTaskList = taskContext.taskList.filter((item) => {
+      return item.id !== props.id;
+    });
+    taskContext.setTaskList(newTaskList);
+    localStorage.setItem("taskList", JSON.stringify(newTaskList));
     setIsDone(true);
   };
 

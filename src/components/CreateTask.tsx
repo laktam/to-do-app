@@ -37,6 +37,7 @@ const DatePicker = styled.div`
 `;
 
 type TaskContent = {
+  id: number;
   content: string;
   dueDate: Dayjs | undefined;
 };
@@ -54,7 +55,11 @@ export function CreateTask(props: Props) {
   };
   const createNewTask = () => {
     if (task !== "") {
-      const newTask = { content: task, dueDate: date };
+      const newTask = {
+        id: props.taskList.length,
+        content: task,
+        dueDate: date,
+      };
       props.setTaskList([...props.taskList, newTask]);
       localStorage.setItem(
         "taskList",
