@@ -38,7 +38,7 @@ function App() {
     <Context.Provider value={{ taskList, setTaskList }}>
       <div className="App">
         <CreateTask taskList={taskList} setTaskList={setTaskList} />
-        {taskList.map((item) => {
+        {taskList.map((item,index) => {
           return (
             <Task
               id={item.id}

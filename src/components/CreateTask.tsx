@@ -56,7 +56,7 @@ export function CreateTask(props: Props) {
   const createNewTask = () => {
     if (task !== "") {
       const newTask = {
-        id: props.taskList.length,
+        id: props.taskList[props.taskList.length - 1].id + 1,
         content: task,
         dueDate: date,
       };
