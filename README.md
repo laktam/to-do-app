@@ -1,46 +1,65 @@
-# Getting Started with Create React App
+# To-Do App
+A simple responsive to-do list application built with React to help you stay organized.
+![To-Do App Preview](./preview.png)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Table of Contents
+- [Demo](#demo)
+- [Features](#features)
+- [Installation](#installation)
 
-## Available Scripts
 
-In the project directory, you can run:
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Demo
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Check out the live demo: [To-Do App Demo](https://laktam.github.io/to-do-app)
 
-### `npm test`
+## Features
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Add new tasks with due dates and descriptions.
+- Mark tasks as done
+- Overdue task indicator highlights tasks with missed due dates.  
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Installation
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Prerequisites
 
-### `npm run eject`
+Before you begin, make sure you have the following installed:
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- Node.js: [Download Node.js](https://nodejs.org/)
+- npm (Node Package Manager): npm is included with Node.js installation.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### Clone the Repository
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+1. Clone the repository to your local machine:
 
-## Learn More
+   ```bash
+   git clone https://github.com/laktam/to-do-app.git
+   ```
+2. Navigate to the project directory:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+ ```bash
+cd your-project
+   ```
+3. Install Dependencies
+Use npm to install the project's dependencies:
+ ```bash
+npm install
+   ```
+4. Start the Development Server
+To launch the development server and view the app in your browser, run:
+ ```bash
+npm start
+   ```
+The development server will start, and the app will be accessible at http://localhost:3000. Any changes you make to the source code will automatically trigger a hot reload.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+5. Build for Production
+When you're ready to deploy the app to a production environment, create a production build using:
+
+```bash 
+npm run build
+```
+The optimized and minified build will be created in the build folder.
