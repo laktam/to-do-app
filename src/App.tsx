@@ -31,6 +31,7 @@ type TaskContent = {
 
 function App() {
   const [taskList, setTaskList] = useState<TaskContent[]>([]);
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
   useEffect(() => {
     const tl = localStorage.getItem("taskList");
@@ -39,17 +40,22 @@ function App() {
       console.log(JSON.parse(tl));
     }
     // localStorage.setItem("taskList", "[]");//clear taskList
+
+    window.addEventListener("resize", () => {
+      setScreenWidth(window.innerWidth);
+      console.log(window.innerWidth);
+    });
   }, []);
 
   return (
     <Context.Provider value={{ taskList, setTaskList }}>
       <div className="App">
         <CreateTask taskList={taskList} setTaskList={setTaskList} />
-        <Grid sx={{ width: "80%" }} container >
+        <Grid sx={{ width: "80%" }} container>
           <Grid item xs={12} sm={5.5}>
             <Column>
               {taskList.map((item, index) => {
-                if (index % 2 === 0) {
+                if (index % 2 === 0 && screenWidth >= 600) {
                   return (
                     <Task
                       key={item.id}
@@ -58,15 +64,25 @@ function App() {
                       dueDate={item.dueDate}
                     />
                   );
+                } else if (screenWidth < 600) {
+                  //return all items in the first column if the screen is small
+                  return (
+                    <Task
+                      id={item.id}
+                      key={item.id}
+                      content={item.content}
+                      dueDate={item.dueDate}
+                    />
+                  );
                 }
               })}
             </Column>
           </Grid>
-          <Grid item xs={0} sm={1}/>
+          <Grid item xs={0} sm={1} />
           <Grid item xs={12} sm={5.5}>
             <Column>
               {taskList.map((item, index) => {
-                if (index % 2 !== 0) {
+                if (index % 2 !== 0 && screenWidth >= 600) {
                   return (
                     <Task
                       key={item.id}
@@ -86,3 +102,4 @@ function App() {
 }
 
 export default App;
+{/* <a target="_blank" href="https://icons8.com/icon/67503/add-new">Add</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a> */}

@@ -1,6 +1,7 @@
 import { ReactNode, useState } from "react";
 import styled from "styled-components";
-import { Task } from "./Task";
+import AddImg from "../images/add.png";
+
 import {
   DateField,
   DateTimePicker,
@@ -13,7 +14,6 @@ const Container = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin: 5px;
   justify-content: space-between;
 `;
 const TextArea = styled.textarea`
@@ -28,9 +28,10 @@ const TextArea = styled.textarea`
   resize: none;
 `;
 const AddTask = styled.button`
-  margin: 10px;
-  font-size: 28px;
-  border-radius: 45%;
+  // border-radius: 40%;
+  // border: none;
+  padding: 0px;
+  height: 48px;
 `;
 const DatePicker = styled.div`
   background-color: white;
@@ -92,7 +93,9 @@ export function CreateTask(props: Props) {
           </LocalizationProvider>
         </DatePicker>
 
-        <AddTask onClick={createNewTask}>+</AddTask>
+        <AddTask onClick={createNewTask}>
+          <img src={AddImg} style={{ height: "45px" }} alt="add button" />
+        </AddTask>
       </Container>
     </div>
   );

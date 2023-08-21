@@ -115,7 +115,7 @@ export function Task(props: Props) {
     <></>
   ) : (
     <Div>
-      <Paper sx={{ position: "relative" }}>
+      <Paper sx={{ position: "relative" }} >
         {/* width: "350px", */}
         <Container>
           <Content>{props.content}</Content>
