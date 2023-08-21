@@ -5,6 +5,13 @@ import { CreateTask } from "./components/CreateTask";
 import { Dayjs } from "dayjs";
 import { Task } from "./components/Task";
 import { createContext } from "react";
+import styled from "styled-components";
+import { Grid } from "@mui/material";
+
+const Column = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
 
 type ContextType = {
   taskList: TaskContent[];
@@ -38,7 +45,41 @@ function App() {
     <Context.Provider value={{ taskList, setTaskList }}>
       <div className="App">
         <CreateTask taskList={taskList} setTaskList={setTaskList} />
-        {taskList.map((item,index) => {
+        <Grid container spacing={2}>
+          <Grid item xs={6}>
+            <Column>
+              {taskList.map((item, index) => {
+                if (index % 2 === 0) {
+                  return (
+                    <Task
+                      key={item.id}
+                      id={item.id}
+                      content={item.content}
+                      dueDate={item.dueDate}
+                    />
+                  );
+                }
+              })}
+            </Column>
+          </Grid>
+          <Grid item xs={6}>
+            <Column>
+              {taskList.map((item, index) => {
+                if (index % 2 !== 0) {
+                  return (
+                    <Task
+                      key={item.id}
+                      id={item.id}
+                      content={item.content}
+                      dueDate={item.dueDate}
+                    />
+                  );
+                }
+              })}
+            </Column>
+          </Grid>
+        </Grid>
+        {/* {taskList.map((item, index) => {
           return (
             <Task
               id={item.id}
@@ -47,7 +88,7 @@ function App() {
               dueDate={item.dueDate}
             ></Task>
           );
-        })}
+        })} */}
       </div>
     </Context.Provider>
   );
