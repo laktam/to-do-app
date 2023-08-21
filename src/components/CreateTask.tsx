@@ -17,7 +17,7 @@ const Container = styled.div`
   justify-content: space-between;
 `;
 const TextArea = styled.textarea`
-  width: 400px;
+  width: 100%;
   height: 80px;
   padding: 12px 20px;
   box-sizing: border-box;
@@ -75,7 +75,7 @@ export function CreateTask(props: Props) {
   };
 
   return (
-    <div>
+    <div style={{width:'100%'}}>
       <TextArea value={task} onChange={handleTaskChange} />
       <Container>
         <DatePicker>

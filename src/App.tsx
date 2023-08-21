@@ -50,8 +50,15 @@ function App() {
   return (
     <Context.Provider value={{ taskList, setTaskList }}>
       <div className="App">
-        <CreateTask taskList={taskList} setTaskList={setTaskList} />
         <Grid sx={{ width: "80%" }} container>
+          <Grid item xs={0} sm={1} md={3} />
+          <Grid item xs={12} sm={10} md={6}>
+            <CreateTask taskList={taskList} setTaskList={setTaskList} />
+          </Grid>
+          <Grid item xs={0} sm={1} md={3} />
+
+          {/* after note creation */}
+
           <Grid item xs={12} sm={5.5}>
             <Column>
               {taskList.map((item, index) => {
@@ -102,4 +109,6 @@ function App() {
 }
 
 export default App;
-{/* <a target="_blank" href="https://icons8.com/icon/67503/add-new">Add</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a> */}
+{
+  /* <a target="_blank" href="https://icons8.com/icon/67503/add-new">Add</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a> */
+}
