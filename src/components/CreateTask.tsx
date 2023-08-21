@@ -26,6 +26,7 @@ const TextArea = styled.textarea`
   background-color: #f8f8f8;
   font-size: 16px;
   resize: none;
+  margin-bottom: 5px;
 `;
 const AddTask = styled.button`
   // border-radius: 40%;
@@ -75,7 +76,7 @@ export function CreateTask(props: Props) {
   };
 
   return (
-    <div style={{width:'100%'}}>
+    <div style={{ width: "100%" }}>
       <TextArea value={task} onChange={handleTaskChange} />
       <Container>
         <DatePicker>
