@@ -45,8 +45,8 @@ function App() {
     <Context.Provider value={{ taskList, setTaskList }}>
       <div className="App">
         <CreateTask taskList={taskList} setTaskList={setTaskList} />
-        <Grid container spacing={2}>
-          <Grid item xs={6}>
+        <Grid sx={{ width: "80%" }} container >
+          <Grid item xs={12} sm={5.5}>
             <Column>
               {taskList.map((item, index) => {
                 if (index % 2 === 0) {
@@ -62,7 +62,8 @@ function App() {
               })}
             </Column>
           </Grid>
-          <Grid item xs={6}>
+          <Grid item xs={0} sm={1}/>
+          <Grid item xs={12} sm={5.5}>
             <Column>
               {taskList.map((item, index) => {
                 if (index % 2 !== 0) {
@@ -79,16 +80,6 @@ function App() {
             </Column>
           </Grid>
         </Grid>
-        {/* {taskList.map((item, index) => {
-          return (
-            <Task
-              id={item.id}
-              key={item.id}
-              content={item.content}
-              dueDate={item.dueDate}
-            ></Task>
-          );
-        })} */}
       </div>
     </Context.Provider>
   );

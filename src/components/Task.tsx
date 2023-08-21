@@ -115,20 +115,12 @@ export function Task(props: Props) {
     <></>
   ) : (
     <Div>
-      <Paper sx={{ width: "350px", position: "relative" }}>
+      <Paper sx={{ position: "relative" }}>
+        {/* width: "350px", */}
         <Container>
           <Content>{props.content}</Content>
           <SubContainer>
-            <Time>
-              {/* {timeRemaining >= 24
-                ? timeRemaining % 24
-                  ? `${Math.floor(timeRemaining / 24)} day(s) and ${
-                      timeRemaining % 24
-                    } hour(s)  left`
-                  : `${Math.floor(timeRemaining / 24)} day(s) left`
-                : `${timeRemaining} hour(s) left`} */}
-              {!isMissed ? `${timeRemaining} left` : "no time left"}
-            </Time>
+            <Time>{!isMissed ? `${timeRemaining} left` : "no time left"}</Time>
             <Done onClick={handleTaskDone}>done</Done>
           </SubContainer>
         </Container>
