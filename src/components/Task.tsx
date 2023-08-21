@@ -71,6 +71,7 @@ export function Task(props: Props) {
   const [isDone, setIsDone] = useState(false);
   const [timeRemaining, setTimeRemaining] = useState("");
   const [isMissed, setIsMissed] = useState(false);
+  const [elevation, setElevation] = useState(1);
 
   const taskContext = useContext(Context);
 
@@ -114,8 +115,15 @@ export function Task(props: Props) {
   return isDone ? (
     <></>
   ) : (
-    <Div>
-      <Paper sx={{ position: "relative" }} >
+    <Div
+      onMouseEnter={() => {
+        setElevation(9);
+      }}
+      onMouseLeave={() => {
+        setElevation(1);
+      }}
+    >
+      <Paper sx={{ position: "relative" }} elevation={elevation}>
         {/* width: "350px", */}
         <Container>
           <Content>{props.content}</Content>
