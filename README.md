@@ -36,9 +36,9 @@ Before you begin, make sure you have the following installed:
 
 1. Clone the repository to your local machine:
 
-   ```bash
-   git clone https://github.com/laktam/to-do-app.git
-   ```
+```bash
+git clone https://github.com/laktam/to-do-app.git
+```
 2. Navigate to the project directory:
 
  ```bash
@@ -46,14 +46,16 @@ cd your-project
    ```
 3. Install Dependencies
 Use npm to install the project's dependencies:
+
  ```bash
 npm install
    ```
 4. Start the Development Server
 To launch the development server and view the app in your browser, run:
- ```bash
+
+```bash
 npm start
-   ```
+```
 The development server will start, and the app will be accessible at http://localhost:3000. Any changes you make to the source code will automatically trigger a hot reload.
 
 5. Build for Production
