@@ -1,6 +1,8 @@
 # To-Do App
 A simple responsive to-do list application built with React to help you stay organized.
+
 ![To-Do App Preview](./preview.png)
+![To-Do App Preview2](./preview2.png)
 
 ## Table of Contents
 - [Demo](#demo)
