@@ -136,7 +136,7 @@ export function Task(props: Props) {
           <Missed>
             task due date is missed
             <ClearButton onClick={handleTaskDone}>
-              <img style={{ height: "70%" }} src={CloseImage} />
+              <img style={{ height: "70%", width: "auto" }} src={CloseImage} />
             </ClearButton>
           </Missed>
         ) : (

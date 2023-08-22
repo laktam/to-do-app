@@ -33,6 +33,7 @@ const AddTask = styled.button`
   // border: none;
   padding: 0px;
   height: 48px;
+  margin-left: 8px;
 `;
 const DatePicker = styled.div`
   background-color: white;
